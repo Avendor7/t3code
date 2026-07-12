@@ -12,6 +12,19 @@ T3 Code is a minimal web GUI for using coding agents like Codex and Claude.
 
 This repository is a VERY EARLY WIP. Proposing sweeping changes that improve long-term maintainability is encouraged.
 
+## Fork Development
+
+This repository is a personal fork with no current intent to contribute its custom changes upstream. Preserve the ability to sync with the upstream project:
+
+- Keep `main` as a clean mirror of `upstream/main`; do not develop custom features directly on it.
+- Use `personal/main` as the integration branch for fork-specific changes.
+- Develop non-trivial changes on short-lived branches created from `personal/main`, then merge them back into `personal/main`.
+- Sync in the direction `upstream/main` -> `main` -> `personal/main`. Rebase `personal/main` onto `main` while it remains privately owned; use merges instead if it becomes a shared branch where history must remain stable.
+- Keep fork-specific commits small, cohesive, and independently removable. Do not combine unrelated cleanup, formatting, or features.
+- Prefer new, focused modules and components for fork functionality. Limit edits to high-churn upstream files to thin imports, composition points, or adapters so upstream changes produce fewer conflicts.
+- Reuse existing shared boundaries when appropriate, but avoid embedding substantial fork-only behavior in central components. Extract stable seams before adding complex UI or sidebar features.
+- Keep persisted-state and protocol changes explicit, versioned, and covered by migration or compatibility logic so syncing cannot silently corrupt existing data.
+
 ## Core Priorities
 
 1. Performance first.
