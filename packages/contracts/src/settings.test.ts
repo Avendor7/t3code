@@ -31,6 +31,18 @@ describe("ClientSettings word wrap", () => {
   });
 });
 
+describe("ClientSettings Git quick action", () => {
+  it("creates a PR by default for backward compatibility", () => {
+    expect(decodeClientSettings({}).createPrWithQuickAction).toBe(true);
+  });
+
+  it("preserves an explicitly disabled PR quick action", () => {
+    expect(decodeClientSettings({ createPrWithQuickAction: false }).createPrWithQuickAction).toBe(
+      false,
+    );
+  });
+});
+
 describe("ServerSettings.providerInstances (slice-2 invariant)", () => {
   it("defaults to an empty record so legacy configs without the key still decode", () => {
     expect(DEFAULT_SERVER_SETTINGS.providerInstances).toEqual({});

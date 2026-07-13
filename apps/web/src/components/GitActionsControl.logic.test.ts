@@ -399,6 +399,21 @@ describe("when: working tree has local changes", () => {
     });
   });
 
+  it("resolveQuickAction only commits and pushes when PR creation is disabled", () => {
+    const quick = resolveQuickAction(
+      status({ hasWorkingTreeChanges: true }),
+      false,
+      false,
+      true,
+      false,
+    );
+    assert.deepInclude(quick, {
+      kind: "run_action",
+      action: "commit_push",
+      label: "Commit & push",
+    });
+  });
+
   it("resolveQuickAction falls back to commit when no origin remote exists", () => {
     const quick = resolveQuickAction(
       status({ hasWorkingTreeChanges: true, hasUpstream: false }),
