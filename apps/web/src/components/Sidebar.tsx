@@ -712,7 +712,7 @@ export const SidebarThreadRow = memo(function SidebarThreadRow(props: SidebarThr
           {renamingThreadKey === threadKey ? (
             <input
               ref={handleRenameInputRef}
-              className="min-w-0 flex-1 truncate text-base sm:text-xs bg-transparent outline-none border border-ring rounded px-0.5"
+              className="min-w-0 flex-1 truncate rounded border border-ring bg-transparent px-0.5 text-[13px] outline-none"
               value={renamingTitle}
               onChange={handleRenameInputChange}
               onKeyDown={handleRenameInputKeyDown}
@@ -725,7 +725,7 @@ export const SidebarThreadRow = memo(function SidebarThreadRow(props: SidebarThr
               <TooltipTrigger
                 render={
                   <span
-                    className="min-w-0 flex-1 truncate text-xs"
+                    className="min-w-0 flex-1 truncate text-[13px]"
                     data-testid={`thread-title-${thread.id}`}
                   >
                     {thread.title}
@@ -865,7 +865,7 @@ export const SidebarThreadRow = memo(function SidebarThreadRow(props: SidebarThr
                   </Tooltip>
                 ) : (
                   <span
-                    className={`text-[10px] tabular-nums ${
+                    className={`text-[11px] tabular-nums ${
                       isHighlighted
                         ? "text-foreground/72 dark:text-foreground/82"
                         : "text-muted-foreground/40"
@@ -984,7 +984,7 @@ const SidebarProjectThreadList = memo(function SidebarProjectThreadList(
         <SidebarMenuSubItem className="w-full" data-thread-selection-safe>
           <div
             data-thread-selection-safe
-            className="flex h-6 w-full translate-x-0 items-center px-2 text-left text-[10px] text-muted-foreground/60"
+            className="flex h-6 w-full translate-x-0 items-center px-2 text-left text-[11px] text-muted-foreground/60"
           >
             <span>No threads yet</span>
           </div>
@@ -1030,7 +1030,7 @@ const SidebarProjectThreadList = memo(function SidebarProjectThreadList(
             render={showMoreButtonRender}
             data-thread-selection-safe
             size="sm"
-            className="h-6 w-full translate-x-0 justify-start px-2 text-left text-[10px] text-muted-foreground/60 hover:bg-accent hover:text-muted-foreground/80"
+            className="h-6 w-full translate-x-0 justify-start px-2 text-left text-[11px] text-muted-foreground/60 hover:bg-accent hover:text-muted-foreground/80"
             onClick={() => {
               expandThreadListForProject(projectKey);
             }}
@@ -1048,7 +1048,7 @@ const SidebarProjectThreadList = memo(function SidebarProjectThreadList(
             render={showLessButtonRender}
             data-thread-selection-safe
             size="sm"
-            className="h-6 w-full translate-x-0 justify-start px-2 text-left text-[10px] text-muted-foreground/60 hover:bg-accent hover:text-muted-foreground/80"
+            className="h-6 w-full translate-x-0 justify-start px-2 text-left text-[11px] text-muted-foreground/60 hover:bg-accent hover:text-muted-foreground/80"
             onClick={() => {
               collapseThreadListForProject(projectKey);
             }}
@@ -2243,11 +2243,11 @@ const SidebarProjectItem = memo(function SidebarProjectItem(props: SidebarProjec
           )}
           <ProjectFavicon environmentId={project.environmentId} cwd={project.workspaceRoot} />
           <span className="flex min-w-0 flex-1 items-center gap-2">
-            <span className="truncate text-xs font-medium text-foreground/90">
+            <span className="truncate text-sm font-medium text-foreground/90">
               {project.displayName}
             </span>
             {project.groupedProjectCount > 1 ? (
-              <span className="shrink-0 text-[10px] text-muted-foreground/60">
+              <span className="shrink-0 text-[11px] text-muted-foreground/60">
                 {project.groupedProjectCount} projects
               </span>
             ) : null}
@@ -2986,7 +2986,7 @@ const SidebarProjectsContent = memo(function SidebarProjectsContent(
       <LocalSecondaryStatus />
       <SidebarGroup className="px-2 py-2">
         <div className="mb-1 flex items-center justify-between pl-2 pr-1.5">
-          <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground/60">
+          <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground/60">
             Projects
           </span>
           <div className="flex items-center gap-1">
