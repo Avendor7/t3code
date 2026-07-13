@@ -1,9 +1,7 @@
 name: Deploy T3 Connect relay
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -17,7 +15,10 @@ concurrency:
 jobs:
   deploy_relay:
     name: Deploy production relay
-    runs-on: blacksmith-8vcpu-ubuntu-2404
+    # Fork deployments are opt-in. Set the repository variable
+    # FORK_CD_ENABLED=true when this deployment is intentionally configured.
+    if: ${{ vars.FORK_CD_ENABLED == 'true' }}
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     environment:
       name: production

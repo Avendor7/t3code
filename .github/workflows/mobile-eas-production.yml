@@ -33,7 +33,10 @@ on:
 jobs:
   production:
     name: EAS Production ${{ inputs.mode }}
-    runs-on: blacksmith-8vcpu-ubuntu-2404
+    # Fork deployments are opt-in. Set the repository variable
+    # FORK_CD_ENABLED=true when EAS is intentionally configured.
+    if: ${{ vars.FORK_CD_ENABLED == 'true' }}
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
     env:
