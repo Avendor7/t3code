@@ -358,6 +358,32 @@ function GitFetchIntervalSettings() {
   );
 }
 
+function GitQuickActionSettings() {
+  const createPrWithQuickAction = usePrimarySettings(
+    (settings) => settings.createPrWithQuickAction,
+  );
+  const updateSettings = useUpdatePrimarySettings();
+
+  return (
+    <SettingsSection title="Git actions">
+      <div className="flex items-start justify-between gap-4 px-4 py-3.5 sm:px-5">
+        <div className="min-w-0 space-y-1">
+          <p className="text-sm font-medium text-foreground">Create PR with quick action</p>
+          <p className="max-w-2xl text-xs leading-relaxed text-muted-foreground">
+            Include PR creation when the primary Git action commits and pushes a branch. The PR
+            action remains available in the dropdown when this is off.
+          </p>
+        </div>
+        <Switch
+          checked={createPrWithQuickAction}
+          onCheckedChange={(checked) => updateSettings({ createPrWithQuickAction: checked })}
+          aria-label="Create PR with quick action"
+        />
+      </div>
+    </SettingsSection>
+  );
+}
+
 function SourceControlSectionSkeleton({
   title,
   headerAction,
@@ -478,6 +504,7 @@ export function SourceControlSettingsPanel() {
 
   return (
     <SettingsPageContainer>
+      <GitQuickActionSettings />
       {isInitialScanPending ? (
         <>
           <SourceControlSectionSkeleton title="Version Control" headerAction={scanButton} />
